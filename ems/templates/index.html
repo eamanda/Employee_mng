@@ -1,0 +1,13 @@
+{% load socialaccount %}
+
+
+<html>
+<body>
+<!-- <h1>Welcome to EMS </h1> -->
+{% if user.is_authenticated %}
+  {% include 'auth/addprofile.html' %}
+{% else %}
+  <a href="{% provider_login_url 'google' %}">Login With Google</a>
+{% endif %}
+</body>
+</html>
