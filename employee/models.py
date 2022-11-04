@@ -14,23 +14,17 @@ class Profile(models.Model):
     def __str__(self):
         return "{0} {1}".format(self.usr.first_name, self.usr.last_name)
 
-
-# @receiver(pre_save, sender=User)
-# def create_user(sender, instance, created, **kwargs):
-
-#     print(created)
-#     if created:
-#         Profile.objects.create(usr=instance)
-#     else:
-#         instance.profile.save()
-
 # @receiver(post_save, sender=User)
 # def user_is_created(sender, instance, created, **kwargs):
+#     print(instance,"|",instance.first_name)
 #     print(created)
 #     if created:
 #         Profile.objects.create(usr=instance)
-#     else:
+#     elif User.objects.filter(username=instance.username):
 #         instance.profile.save()
+#     else:
+#         new_user=User.objects.create(first_name=instance.first_name,last_name= instance.last_name,username=instance.username,password=instance.password)
+
 
 
 

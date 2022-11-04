@@ -17,33 +17,33 @@
 
                     <tr>
                         <td><label class="control-label"><b>First name:</b></label></td>
-                        <div class="col-md-5"><td>{{ uf.first_name }}</td> </div>
+                        <div class="col-md-5"><td><input type="text"  name="first_name"  default="{{ user.first_name}}"></td> </div>
                     </tr>
 
                     <tr>
                         <td><label class="control-label"><b>Last name:</b></label></td>
-                        <div class="col-md-5"><td>{{ uf.last_name }}</td></div>
+                        <div class="col-md-5" ><td><input type="text" name="last_name" default="{{ user.last_name}}"></td></div>
                     </tr>
 
                     <tr>
                         <td><label class="control-label"><b>Email id:</b></label></td>
-                        <div class="col-md-5"><td>{{ uf.email }}</td></div>
+                        <div class="col-md-5" ><td><input type="text" name="email" default="{{ user.email}}"></td></div>
                     </tr>
 
                     <tr>
                         <td><label class="control-label"><b>Username:</b></label></td>
-                        <div class="col-md-5"><td>{{ uf.username }}</td></div>
+                        <div class="col-md-5" ><td><input type="text" name="username" default="{{ user.username}}"></td></div>
                     </tr>
 
                     <tr>
                         <td><label class="control-label"><b>Password:</b></label></td>
-                        <div class="col-md-5"><td>{{ uf.password }}</td></div>
+                        <div class="col-md-5" name="password"><td><input type="password"></td></div>
                     </tr>
 
-                    <tr>
+                    <!-- <tr>
                         <td><label class="control-label"><b>Role:</b></label></td>
-                        <div class="col-md-5"><td>{{ uf.role }}</td></div>
-                    </tr>
+                        <div class="col-md-5 "name="role"><td><input type="text"></td></div>
+                    </tr> -->
 
                 </tbody>
             </table>

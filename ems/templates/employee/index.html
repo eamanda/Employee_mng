@@ -6,9 +6,10 @@
     <div class="col-md-8">
     <p>
         <div class="float-left"><h3>List of {{ title }}</h3></div>
-    {% if request.role == 'Admin' %}
-        <a style="background-color: cyan; color: blue;" class="btn btn-outline-primary float-right" href="/employee/add/">Add Employee</a>
+    {% if request.role == 'Admin' or request.role == 'HR'%}
+
     {% endif %}
+    <a style="background-color: cyan; color: blue;" class="btn btn-outline-primary float-right" href="/employee/add/">Add Employee</a>
     </p>
 
     <div class="table-responsive-sm">

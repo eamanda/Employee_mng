@@ -3,8 +3,9 @@
 
 {% block content %}
     <br>
+
       {% if user %}
-        <form method="POST" class="form-horizontal">
+        <form method="post" class="form-horizontal" action="{% url 'auth_employee_add' %}">
           {% csrf_token %}
         <div class="container">
         <h3>My Profile</h3>
@@ -14,50 +15,51 @@
 
             <thead>
                 <tr>
-                    <th style="background-color: blue; color: white">Query</th>
-                    <th style="background-color: blue; color: white">Answer</th>
+                    <th style="background-color: blue; color: white">Info</th>
+                    <th style="background-color: blue; color: white">Details</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr>
-                    <td>First name</td>
-                    <td>{{ user.first_name}}</td>
+                    <td><label class="control-label"><b>First name</b></label></td>
+                    <div class="col-md-5"><td><input name="first_name" value="{{ user.first_name}}" readonly></td> </div>
 
                  </tr>
 
-                <tr>
-                    <td>Last name</td>
-                    <td>{{ user.last_name }}</td>
+                 <tr>
+                    <td><label class="control-label"><b>Last name:</b></label></td>
+                    <div class="col-md-5"><td><input name="last_name" value="{{ user.last_name}}" readonly></td> </div>
 
                 </tr>
 
                 <tr>
-                    <td>Email id</td>
-                    <td>{{ user.email}}</td>
+                    <td><label class="control-label"><b>Email id</b></label></td>
+                    <div class="col-md-5"><td><input name="email" value="{{ user.email}}" readonly></td> </div>
 
                 </tr>
 
                 <tr>
-                  <td>Username:</td>
-                  <td>{{ user.username }}</td>
-              </tr>
-
-              <tr>
-                  <td>Password:</td>
-                  <td><input type="password">{{ uf.password }}</td>
-              </tr>
-
-              <tr>
-                  <td>Role:</td>
-                  <td><input type="text">{{ uf.role }}</td>
+                    <td><label class="control-label"><b>Username:</b></label></td>
+                    <div class="col-md-5"><td><input name="username" value="{{ user.username}}"></td> </div>
               </tr>
 
                 <tr>
+                <td><label class="control-label"><b>Password:</b></label></td>
+                <div class="col-md-5"><td><input name="password" type="password">{{ uf.password }}</td> </div>
+              </tr>
+
+                <tr>
+                <td><label class="control-label"><b>Role:</b></label></td>
+                <div class="col-md-5"><td><input name="role" type="text">{{ uf.role }}</td> </div>
+              </tr>
+              {{uf.as_p}}
+
+                <!-- <tr>
                     <td>Salary</td>
                     <td><input type="text" name ="salary">{{ object.salary}}</td>
 
-                </tr>
+                </tr> -->
 
                 <tr>
                     <td>Designation</td>
@@ -66,14 +68,19 @@
                 </tr>
 
             </tbody>
+</table>
+</div>
+</div>
+</div>
 
-            </table>
-            </div>
-            </div>
+
          <div class="text-right">
-        <a style="background-color: cyan; color: black;" class="btn btn-outline-primary float-right"  href="{% url 'my_profile' %}">Complete Profile</a>
+            <button type="submit">Complete Profile</button>
+        <!-- <a style="background-color: cyan; color: black;" class="btn btn-outline-primary float-right"  href="{% url 'auth_employee_add' %}">Complete Profile</a> -->
     </div>
-        </div>
+</div>
+</form>
+
         {% endif %}
 
 

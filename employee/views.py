@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 from employee.forms import UserForm
 from ems.decorators import role_required, admin_only
+from . models import *
 
 def user_login(request):
     context = {}
@@ -42,10 +43,11 @@ def user_logout(request):
 
 @login_required(login_url="/login/")
 def employee_list(request):
-    print(request.role)
+    uf = UserForm()
     context = {}
     context['us'] = User.objects.all()
     context['title'] = 'Employees'
+    context['uf']=uf
     return render(request, 'employee/index.html', context)
 
 @login_required(login_url="/login/")
@@ -94,6 +96,23 @@ def employee_delete(request, id):
         return render(request, 'employee/delete.html', context)
 
 
+def auth_employee_add(request):
+    if request.method == 'POST':
+        print('\n\n post method')
+        user_create=User.objects.create(first_name=request.POST['first_name'],last_name=request.POST['last_name'],username= request.POST['username'],email=request.POST['email'],password=request.POST['password'])
+        user_create.save()
+        pro=Profile()
+        pro.usr=user_create
+        pro.designation=request.POST['designation']
+        pro.save()
+        print('\n\nuser created successfully')
+        print("usercreated")
+        return redirect('/')
+    else:
+        print('\n\n not a post method')
+        uf = UserForm()
+        return render(request, 'employee/add.html', {'uf': uf})
+
 class ProfileUpdate(UpdateView):
     fields = ['designation', 'salary']
     template_name = 'auth/profile_update.html'
@@ -103,7 +122,7 @@ class ProfileUpdate(UpdateView):
         return self.request.user.profile
 
 class MyProfile(DetailView):
-    template_name = 'index.html'
+    template_name = 'auth/profile.html'
 
     def get_object(self):
         return self.request.user.profile

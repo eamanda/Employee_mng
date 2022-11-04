@@ -7,7 +7,7 @@ class RoleMiddleware:
         return response
 
     def process_view(self, request, view_func, *view_args, **view_kargs):
-        if request.user.is_authenticated:
+        # if request.user.is_authenticated:
             request.role = None
             groups = request.user.groups.all()
             if groups:
